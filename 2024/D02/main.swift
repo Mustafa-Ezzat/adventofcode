@@ -95,9 +95,6 @@ func solvePartTwo() -> Int {
 			if unsafeCheck == 0 {
 				break
 			}
-			else {
-				continue
-			}
 		}
 		unsafeCount += unsafeCheck
 	}

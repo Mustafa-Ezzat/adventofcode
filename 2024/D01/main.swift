@@ -14,38 +14,38 @@ func readTestCases(_ file: String) -> (left: [Int], right: [Int]) {
 		return ([], [])
 	}
 	
-	let lines = testCases
+	let pairs = testCases
 		.lowercased
 		.split(separator: "\n")
 		.map { String($0) }
 	
-	return split(lines)
+	return split(pairs)
 }
 
-func split(_ lines: [String]) -> (left: [Int], right: [Int]) {
+func split(_ pairs: [String]) -> (left: [Int], right: [Int]) {
 	var left: [Int] = []
 	var right: [Int] = []
 	
-	for line in lines {
-		let pair = line.split(separator: " ")
-		left.append(Int(pair[0]) ?? -1)
-		right.append(Int(pair[1]) ?? -1)
+	for pair in pairs {
+		let sides = pair.split(separator: " ")
+		left.append(Int(sides[0]) ?? -1)
+		right.append(Int(sides[1]) ?? -1)
 	}
 	
 	return (left, right)
 }
 
 func solvePartOne() -> Int {
-	var total = 0
+	var totalDistance = 0
 	let tuple = readTestCases(file)
 	let left = tuple.left.sorted()
 	let right = tuple.right.sorted()
 	
 	for i in 0..<left.count {
-		total += abs(left[i] - right[i])
+		totalDistance += abs(left[i] - right[i])
 	}
 	
-	return total
+	return totalDistance
 }
 
 func solvePartTwo() -> Int {

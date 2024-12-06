@@ -42,7 +42,7 @@ def solvePartOne():
 
 def solvePartTwo():
     count = 0
-    rows, cols = len(grid), len(grid[0])
+    rows, cols = len(grid) - 1, len(grid[0]) - 1
     dirs = [
         (1, 1), 
         (-1, -1), 
@@ -58,12 +58,10 @@ def solvePartTwo():
 
     for row in range(rows):
         for col in range(cols):
-            if row == 0 or col == 0 or row == rows - 1 or col == cols - 1:
-                continue
             if grid[row][col] == 'A':
                 word = ""
                 for dir in dirs:
-                    r, c = row + dir[0], col + dir[1]
+                    r, c = row + 1 + dir[0], col + 1 + dir[1]
                     word += grid[r][c]
                 if word in probabilities:
                     count += 1

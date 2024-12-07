@@ -16,7 +16,7 @@ def prepare_data():
     
     return list
 
-def find_combinations(numbers, target): 
+def test_combinations(numbers, target): 
     stack = [(0, 0)] 
     while stack: 
         index, current_value = stack.pop()
@@ -28,7 +28,7 @@ def find_combinations(numbers, target):
             stack.append((index + 1, current_value * numbers[index])) 
     return 0
 
-def find_combinations_two(numbers, target): 
+def test_combinations_with_concatenation(numbers, target): 
     stack = [(0, 0)] 
     while stack: 
         index, current_value = stack.pop()
@@ -47,7 +47,7 @@ def solve_part_one():
     items = prepare_data()
     for item in items:
         test_value, numbers = item[0], item[1]
-        result += find_combinations(numbers, test_value)
+        result += test_combinations(numbers, test_value)
     
     return result
 
@@ -56,7 +56,7 @@ def solve_part_two():
     items = prepare_data()
     for item in items:
         test_value, numbers = item[0], item[1]
-        result += find_combinations_two(numbers, test_value)
+        result += test_combinations_with_concatenation(numbers, test_value)
     
     return result
 

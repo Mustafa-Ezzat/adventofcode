@@ -46,7 +46,7 @@ def get_trailhead_score(trailhead, grid, visited):
                             trailhead_score += 1
         return trailhead_score
 
-def calculate_trailhead_scores(grid):
+def get_trailhead_scores(grid):
     trailheads = get_trailheads(grid)
     total_score = 0
 
@@ -60,7 +60,7 @@ def calculate_trailhead_scores(grid):
 
 def solve_part_one():
     grid = get_grid()
-    result = calculate_trailhead_scores(grid)
+    result = get_trailhead_scores(grid)
     return result
 
 print(solve_part_one())

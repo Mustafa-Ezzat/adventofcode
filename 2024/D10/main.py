@@ -8,7 +8,7 @@ with open("input.txt", "r") as f:
 
 def get_grid():
     grid = []
-    for line in testCases:
+    for line in input:
         row = list(line)
         grid.append(row)
     return grid
@@ -28,7 +28,7 @@ def strictly_increasing_path(current, neighbor):
     except:
         return False
 
-def get_trailhead_score(trailhead, grid, visited):
+def get_trailhead_score(trailhead, grid, visited, isRating):
         stack = [trailhead]
         trailhead_score = 0
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -39,21 +39,22 @@ def get_trailhead_score(trailhead, grid, visited):
                 nr, nc = r + x, c + y
                 if inside_grid_border(nr, nc, grid) and (nr, nc) not in visited:
                     current, neighbor = grid[r][c], grid[nr][nc]
-                    if strictly_increasing_path(current, neighbor):  
-                        visited.add((nr, nc))
+                    if strictly_increasing_path(current, neighbor):
+                        if not isRating:  
+                            visited.add((nr, nc))
                         stack.append((nr, nc))
                         if grid[nr][nc] == '9':
                             trailhead_score += 1
         return trailhead_score
 
-def get_trailhead_scores(grid):
+def get_trailhead_scores(grid, isRating = False):
     trailheads = get_trailheads(grid)
     total_score = 0
 
     for trailhead in trailheads:
         visited = set()
         visited.add(trailhead)
-        trailhead_score = get_trailhead_score(trailhead, grid, visited)
+        trailhead_score = get_trailhead_score(trailhead, grid, visited, isRating)
         total_score += trailhead_score
     
     return total_score
@@ -63,4 +64,10 @@ def solve_part_one():
     result = get_trailhead_scores(grid)
     return result
 
+def solve_part_two():
+    grid = get_grid()
+    result = get_trailhead_scores(grid, True)
+    return result
+
 print(solve_part_one())
+print(solve_part_two())

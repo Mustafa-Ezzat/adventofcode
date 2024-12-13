@@ -1,5 +1,3 @@
-from collections import deque
-
 with open("testCases.txt", "r") as f:
     testCases = f.read()
 

@@ -1,4 +1,3 @@
-from typing import List, Tuple
 import heapq
 
 with open("testCases.txt", "r") as f:
